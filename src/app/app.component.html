@@ -88,12 +88,12 @@
 
   <p>Click the button to trigger the display of additional text on this website.</p>
 
+  <button (click)="toggleShow()" type="checkbox" >Click to Show or Hide</button>
 
-  <button onclick="myFunction()">Click Me</button>
-
-  <div id="myDIV">
-    <h2>Additional Text</h2>
-    <p>This is an additional section of text to display and hide when clicked.</p>
+  <div *ngIf="isShown" class="row container-fluid"  id="divshow" >
+  
+    <h2>Additional Content</h2>
+    <p>New text displayed when clicked to view.</p>
   </div>
 
   <!-- Footer -->
