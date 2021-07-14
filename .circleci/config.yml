@@ -28,9 +28,18 @@ jobs:
       - browser-tools/install-chrome
       - browser-tools/install-chromedriver
       - node/install-packages
+      - run: mkdir ~/junit
       - run:
           name: Run tests
-          command: npm run ng test --watch=false --browsers=ChromeHeadless
+          command: npm run headless-test
+          environment:
+            JUNIT_REPORT_PATH: ./junit/
+            JUNIT_REPORT_NAME: test-results.xml
+          when: always
+      - store_test_results:
+          path: ./junit
+      - store_artifacts:
+          path: ./junit
 
 workflows:
   # Below is the definition of your workflow.
