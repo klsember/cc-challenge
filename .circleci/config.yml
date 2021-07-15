@@ -41,6 +41,13 @@ jobs:
           path: ./junit
       - store_artifacts:
           path: ./junit
+      - setup_remote_docker:
+          version: 18.09.3
+      - run:
+          name: Build Docker Image
+          command: |
+            npm run docker
+            docker images
   deploy:
     executor: heroku/default
     steps:
@@ -49,7 +56,7 @@ jobs:
       - setup_remote_docker:
           version: 18.09.3
       - run:
-          name: Pushing to heroku registry
+          name: Pushing to Heroku Registry
           command: |
             heroku container:login
             heroku container:push web -a $HEROKU_APP_NAME
