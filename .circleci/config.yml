@@ -46,19 +46,15 @@ jobs:
     steps:
       - checkout
       - heroku/install
+      - setup_remote_docker:
+          version: 18.09.3
       - run:
-          name: Login into Heroku Docker Repository
-          command: >
-            docker login --username=$HEROKU_LOGIN --password=$HEROKU_API_KEY
-            registry.heroku.com
-      - run:
-          name: Deploy Heroku Docker Container
-          command: >
+          name: Pushing to heroku registry
+          command: |
+            heroku container:login
             heroku container:push web -a $HEROKU_APP_NAME
-      - run:
-          name: Release Heroku Application
-          command: >
             heroku container:release web -a $HEROKU_APP_NAME
+    
 
 workflows:
   # Below is the definition of your workflow.
@@ -68,8 +64,6 @@ workflows:
   build_test_deploy: 
     jobs:
       - build-and-test
-      # For running simple node tests, you could optionally use the node/test job from the orb to replicate and replace the job above in fewer lines.
-      # - node/test
       - deploy:
           requires:
               - build-and-test
