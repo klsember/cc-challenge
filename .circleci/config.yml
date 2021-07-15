@@ -61,7 +61,7 @@ workflows:
       # - node/test
       - deploy:
           requires:
-              - build
+              - build-and-test
           filters:
             branches:
               only: main
