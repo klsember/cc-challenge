@@ -46,7 +46,7 @@ jobs:
       - run:
           name: Build Docker Image
           command: |
-            npm run docker
+            docker build -t ccchallengeapp:circleci .
             docker images
   deploy:
     executor: heroku/default
