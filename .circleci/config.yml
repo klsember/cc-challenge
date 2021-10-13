@@ -28,7 +28,7 @@ jobs:
       - store_artifacts:
           path: ./junit
       - persist_to_workspace:
-          root: ~/angular-cc
+          root: .
           paths: junit/
   another-test:  
     docker:
@@ -53,7 +53,7 @@ jobs:
       - store_artifacts:
           path: ./junit
       - persist_to_workspace:
-          root: ~/angular-cc
+          root: .
           paths: junit/
   compile-tests:
     docker:
