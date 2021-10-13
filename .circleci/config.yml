@@ -28,7 +28,7 @@ jobs:
       - store_artifacts:
           path: ./junit
       - persist_to_workspace:
-          root: .
+          root: ~/angular-cc
           paths: junit/
   another-test:  
     docker:
@@ -53,7 +53,7 @@ jobs:
       - store_artifacts:
           path: ./junit
       - persist_to_workspace:
-          root: .
+          root: ~/angular-cc
           paths: junit/
   compile-tests:
     docker:
@@ -65,8 +65,8 @@ jobs:
       - run:
           name: Finding the files
           command: |
-            find ~+ -type f -name anothertest-results.xml
-            find ~+ -type f -name test-results.xml
+            pwd
+            cd junit
       - store_artifacts:
           path: ./junit
 workflows:
