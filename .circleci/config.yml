@@ -65,8 +65,7 @@ jobs:
       - run:
           name: Finding the files
           command: |
-            pwd
-            cd junit
+            cat ~/angular-cc/anothertest-results.xml
       - store_artifacts:
           path: ./junit
 workflows:
