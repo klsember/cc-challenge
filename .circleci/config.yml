@@ -65,8 +65,8 @@ jobs:
       - run:
           name: Finding the files
           command: |
-            find . -name anothertest-results.xml
-            find . -name test-results.xml
+            find ~+ -type f -name anothertest-results.xml
+            find ~+ -type f -name test-results.xml
 workflows:
   build_test_deploy: 
     jobs:
