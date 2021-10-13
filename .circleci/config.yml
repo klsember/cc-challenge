@@ -67,7 +67,7 @@ jobs:
           command: |
             cat ~/angular-cc/junit/anothertest-results.xml
       - store_artifacts:
-          path: ./junit
+          path: ~/angular-cc/junit
 workflows:
   build_test_deploy: 
     jobs:
