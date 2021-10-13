@@ -55,9 +55,25 @@ jobs:
       - persist_to_workspace:
           root: .
           paths: junit/
+  compile-tests:
+    docker:
+      - image: cimg/node:14.17.3
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/angular-cc
+      - run:
+          name: Finding the files
+          command: |
+            find . -name anothertest-results.xml
+            find . -name test-results.xml
 workflows:
   build_test_deploy: 
     jobs:
       - test
       - another-test
+      - compile-tests:
+          requires:
+            - test
+            - another-test
 
