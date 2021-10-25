@@ -70,7 +70,12 @@ workflows:
   # For more details on extending your workflow, see the configuration docs: https://circleci.com/docs/2.0/configuration-reference/#workflows
   build_test_deploy: 
     jobs:
-      - build-and-test
+      - build-and-test:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - deploy:
           requires:
               - build-and-test
